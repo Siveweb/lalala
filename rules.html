@@ -138,13 +138,24 @@
             border-radius: 0 0 10px 10px;
         }
         .check-area { margin-bottom: 15px; font-size: 0.9rem; cursor: pointer; display: inline-block; }
+        
+        /* ボタン並び用コンテナ */
+        .dl-buttons-wrapper {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+
         .dl-btn {
             display: inline-block;
-            padding: 12px 30px;
+            padding: 12px 25px;
             color: white !important;
             text-decoration: none;
             border-radius: 50px;
             font-weight: bold;
+            font-size: 0.9rem;
             transition: 0.3s;
             pointer-events: none;
             background-color: #ccc;
@@ -276,7 +287,10 @@
 
         <div class="dl-btn-container">
             <label class="check-area"><input type="checkbox" id="check-jack"> 正弦波ジャックの規約に同意する</label><br>
-            <a href="./voicebank/%E6%AD%A3%E5%BC%A6%E6%B3%A2%E3%82%B7%E3%82%99%E3%83%A3%E3%83%83%E3%82%AF%E3%80%90JPN%EF%BC%86ENG%E3%80%91%EF%BC%88ver-1.0.3%EF%BC%89.zip" id="dl-jack" class="dl-btn" download>ダウンロード</a>
+            <div class="dl-buttons-wrapper">
+                <a href="./voicebank/%E6%AD%A3%E5%BC%A6%E6%B3%A2%E3%82%B7%E3%82%99%E3%83%A3%E3%83%83%E3%82%AF%E3%80%90JPN%EF%BC%86ENG%E3%80%91%EF%BC%88ver-1.0.3%EF%BC%89.zip" id="dl-jack" class="dl-btn" download>音源ZIPをダウンロード</a>
+                <a href="./Jack-Image.zip" id="dl-jack-img" class="dl-btn" download>立ち絵ZIPをダウンロード</a>
+            </div>
         </div>
     </div>
 
@@ -299,7 +313,10 @@
 
         <div class="dl-btn-container">
             <label class="check-area"><input type="checkbox" id="check-sei"> 虚音セイの規約に同意する</label><br>
-            <a href="./voicebank/%E8%99%9a%E9%9F%B3%E3%82%BB%E3%82%A4%E3%80%90JPN%26ENG%E3%80%91%EF%BC%88ver-1.0.0%EF%BC%89.zip" id="dl-sei" class="dl-btn" download>ダウンロード</a>
+            <div class="dl-buttons-wrapper">
+                <a href="./voicebank/%E8%99%9a%E9%9F%B3%E3%82%BB%E3%82%A4%E3%80%90JPN%26ENG%E3%80%91%EF%BC%88ver-1.0.0%EF%BC%89.zip" id="dl-sei" class="dl-btn" download>音源ZIPをダウンロード</a>
+                <a href="./Sei-Image.zip" id="dl-sei-img" class="dl-btn" download>立ち絵ZIPをダウンロード</a>
+            </div>
         </div>
     </div>
 
@@ -325,7 +342,10 @@
 
         <div class="dl-btn-container">
             <label class="check-area"><input type="checkbox" id="check-nanoka"> 正幻波ナノカの規約に同意する</label><br>
-            <a href="./voicebank/正幻波ナノカ【JPN＆ENG】（ver-1.0.0）.zip" id="dl-nanoka" class="dl-btn">ダウンロード</a>
+            <div class="dl-buttons-wrapper">
+                <a href="./voicebank/正幻波ナノカ【JPN＆ENG】（ver-1.0.0）.zip" id="dl-nanoka" class="dl-btn" download>音源ZIPをダウンロード</a>
+                <a href="./Nanoka-Image.zip" id="dl-nanoka-img" class="dl-btn" download>立ち絵ZIPをダウンロード</a>
+            </div>
         </div>
     </div>
 
@@ -351,7 +371,6 @@
         <p style="margin: 0 0 5px 0; font-weight: bold; font-size: 0.9rem;">不具合・ご意見</p>
         
         <form id="contact-form">
-            <!-- ★共通のアクセスキーをここにセット -->
             <input type="hidden" name="access_key" value="40b4c2ec-2bab-4f17-a213-b3a1901bbeb6">
             
             <div style="margin-bottom: 10px;">
@@ -380,25 +399,44 @@
         document.body.setAttribute('data-theme', currentTheme);
     })();
 
-    // ダウンロードボタンの有効化処理
+    // ダウンロードボタンの有効化処理（音源 ＆ 立ち絵）
     const checkJack = document.getElementById('check-jack');
     const dlJack = document.getElementById('dl-jack');
+    const dlJackImg = document.getElementById('dl-jack-img');
+
     const checkSei = document.getElementById('check-sei');
     const dlSei = document.getElementById('dl-sei');
+    const dlSeiImg = document.getElementById('dl-sei-img');
+
     const checkNanoka = document.getElementById('check-nanoka');
     const dlNanoka = document.getElementById('dl-nanoka');
+    const dlNanokaImg = document.getElementById('dl-nanoka-img');
 
+    // 正弦波ジャック
     checkJack.addEventListener('change', function() {
-        dlJack.style.pointerEvents = this.checked ? 'auto' : 'none';
-        dlJack.style.backgroundColor = this.checked ? '#FC0254' : '#ccc';
+        const isChecked = this.checked;
+        dlJack.style.pointerEvents = isChecked ? 'auto' : 'none';
+        dlJack.style.backgroundColor = isChecked ? '#FC0254' : '#ccc';
+        dlJackImg.style.pointerEvents = isChecked ? 'auto' : 'none';
+        dlJackImg.style.backgroundColor = isChecked ? '#FC0254' : '#ccc';
     });
+
+    // 虚音セイ
     checkSei.addEventListener('change', function() {
-        dlSei.style.pointerEvents = this.checked ? 'auto' : 'none';
-        dlSei.style.backgroundColor = this.checked ? '#FF00BF' : '#ccc';
+        const isChecked = this.checked;
+        dlSei.style.pointerEvents = isChecked ? 'auto' : 'none';
+        dlSei.style.backgroundColor = isChecked ? '#FF00BF' : '#ccc';
+        dlSeiImg.style.pointerEvents = isChecked ? 'auto' : 'none';
+        dlSeiImg.style.backgroundColor = isChecked ? '#FF00BF' : '#ccc';
     });
+
+    // 正幻波ナノカ
     checkNanoka.addEventListener('change', function() {
-        dlNanoka.style.pointerEvents = this.checked ? 'auto' : 'none';
-        dlNanoka.style.backgroundColor = this.checked ? '#0CBFBD' : '#ccc';
+        const isChecked = this.checked;
+        dlNanoka.style.pointerEvents = isChecked ? 'auto' : 'none';
+        dlNanoka.style.backgroundColor = isChecked ? '#0CBFBD' : '#ccc';
+        dlNanokaImg.style.pointerEvents = isChecked ? 'auto' : 'none';
+        dlNanokaImg.style.backgroundColor = isChecked ? '#0CBFBD' : '#ccc';
     });
 
     // 匿名フォーム送信処理
