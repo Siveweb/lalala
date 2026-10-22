@@ -20,6 +20,15 @@
     <title>正弦波ジャック | Sive</title>
     <style>
         /* --- 変数定義 --- */
+        /* サイト内のすべての画像で「長押しメニュー」「テキスト選択」「ドラッグ」をまとめて無効化 */
+img {
+    -webkit-touch-callout: none; /* iOSの長押し保存メニューを無効化 */
+    -webkit-user-select: none;   /* iOS/Safariでの選択（青いカーソル）を無効化 */
+    -moz-user-select: none;      /* Firefoxでの選択防止 */
+    -ms-user-select: none;       /* IE/Edgeでの選択防止 */
+    user-select: none;           /* 標準の選択防止 */
+    -webkit-user-drag: none;     /* ドラッグ禁止 */
+}
         :root {
             --bg-color: #f4f7f9;
             --container-bg: #ffffff;
