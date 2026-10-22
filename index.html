@@ -93,6 +93,14 @@
             transition: background-color 0.3s, color 0.3s;
         }
 
+        /* --- 画像の長押し保存・選択を防止 --- */
+        img {
+            -webkit-touch-callout: none; /* iOS Safariの長押しメニューを無効化 */
+            -webkit-user-select: none;   /* 選択防止 */
+            user-select: none;
+            pointer-events: auto;        /* リンクやレイアウトへの影響を防ぐ */
+        }
+
         .top-nav {
             display: flex;
             width: 100%;
@@ -370,7 +378,6 @@
         <div style="margin-bottom: 12px;">
             <p style="margin: 0;">お問い合わせについて：各ページの下にあるフッターの匿名ボックスから送信できます！</p>
         </div>
-        <p style="margin: 0; font-weight: bold;">※サイト内の全ての画像は長押し等で保存可能です。（改変可）</p>
     </div>
 
 </header>
@@ -533,7 +540,6 @@
         <p style="margin: 0 0 5px 0; font-weight: bold; font-size: 0.9rem;">不具合・ご意見</p>
         
         <form id="contact-form">
-            <!-- ★取得したアクセスキーをここにセットしてください -->
             <input type="hidden" name="access_key" value="40b4c2ec-2bab-4f17-a213-b3a1901bbeb6">
             
             <div style="margin-bottom: 10px;">
